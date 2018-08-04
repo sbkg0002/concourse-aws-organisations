@@ -1,0 +1,23 @@
+import boto3
+import json
+import hashlib
+
+client = boto3.client('organizations')
+
+response = client.list_accounts(
+    # NextToken='listAccounts'
+)
+
+# Hashes can only be created from str
+json_response = json.dumps(response, default=str)
+
+hash_object  = hashlib.sha256(json_response.encode('utf-8'))
+hex_dig = hash_object.hexdigest()
+
+# Generate output
+output_list = []
+versions = {}
+versions['id'] = hex_dig
+
+output_list.append(versions.copy())
+print(output_list)
