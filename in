@@ -1,0 +1,15 @@
+#!/usr/bin/env python3
+# https://boto3.readthedocs.io/en/latest/reference/services/organizations.html#client
+
+import boto3
+import json
+from bson import json_util
+
+client = boto3.client('organizations')
+
+response = client.list_accounts(
+    # NextToken='listAccounts'
+)
+json_response = json.dumps(response, default=json_util.default)
+# json_response = loads(response)
+print(type(json_response))
