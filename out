@@ -3,7 +3,7 @@
 
 import boto3
 import sys
-input = sys.argv[1]
+# input = sys.argv[1]
 client = boto3.client('organizations')
 
 response = client.list_accounts(
